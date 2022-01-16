@@ -3,7 +3,7 @@ from rpi_ws281x import *
 import numpy as np
 import led_visualizer_config as config
 
-strip = Adafruit_NeoPixel(config.LED_COUNT,  config.LED_PIN, config.LED_FREQ_HZ, config.LED_DMA, config.LED_INVERT, config.BRIGHTNESS, config.LED_CHANNEL)
+strip = Adafruit_NeoPixel(config.LED_COUNT,  config.LED_PIN, config.LED_FREQ_HZ, config.LED_DMA, config.LED_INVERT, config.LED_BRIGHTNESS, config.LED_CHANNEL)
 strip.begin()
 
 # _gamma = np.load(config.GAMMA_TABLE_PATH)
