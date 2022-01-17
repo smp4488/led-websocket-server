@@ -1,7 +1,7 @@
 import time
 import numpy as np
 import pyaudio
-import config
+import led_visualizer_config as config
 
 # import sounddevice
 # with sounddevice.OutputStream(device="USB Audio Device", channels=8, callback=callback, samplerate=SAMPLE_RATE):
