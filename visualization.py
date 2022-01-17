@@ -230,23 +230,6 @@ def microphone_update(audio_samples):
         output = visualization_effect(mel)
         led.pixels = output
         led.update()
-        if config.USE_GUI:
-            # Plot filterbank output
-            x = np.linspace(config.MIN_FREQUENCY, config.MAX_FREQUENCY, len(mel))
-            mel_curve.setData(x=x, y=fft_plot_filter.update(mel))
-            # Plot the color channels
-            r_curve.setData(y=led.pixels[0])
-            g_curve.setData(y=led.pixels[1])
-            b_curve.setData(y=led.pixels[2])
-    if config.USE_GUI:
-        app.processEvents()
-    
-    if config.DISPLAY_FPS:
-        fps = frames_per_second()
-        if time.time() - 0.5 > prev_fps_update:
-            prev_fps_update = time.time()
-            print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS))
-
 
 # Number of audio samples to read every time frame
 samples_per_frame = int(config.MIC_RATE / config.FPS)
