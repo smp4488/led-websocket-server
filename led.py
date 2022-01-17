@@ -135,9 +135,9 @@ def rainbow(wait_ms=20, iterations=1):
             
             strip.setPixelColor(led_martix[r][c], wheel((c+j) & 255))
 
-          strip_accent.show()
-          strip_visualizer.show()
-          time.sleep(wait_ms/1000.0)
+      strip_accent.show()
+      strip_visualizer.show()
+      time.sleep(wait_ms/1000.0)
 
 # Execute this file to run a LED strand test
 # If everything is working, you should see a red, green, and blue pixel scroll
