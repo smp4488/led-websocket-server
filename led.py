@@ -170,7 +170,7 @@ if __name__ == '__main__':
             # colorWipeMatrix(Color(0, 0, 255))  # Green wipe
 
             print ('Rainbow cycle.')
-            rainbowCycle()
+            # rainbowCycle()
             print ('Rainbow.')
             rainbow()
 
