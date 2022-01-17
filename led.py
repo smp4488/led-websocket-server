@@ -34,8 +34,6 @@ def colorWipe(color, wait_ms=50):
 
 # get the strip based off the led index position
 def get_strip_from_index(i):
-  return strip_accent
-
   if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
     return strip_visualizer
   else:
