@@ -1,6 +1,6 @@
 from __future__ import print_function
 import numpy as np
-import config
+import led_visualizer_config as config
 import melbank
 
 
