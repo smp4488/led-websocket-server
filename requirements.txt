@@ -5,3 +5,5 @@ eventlet===0.33.0
 numpy===1.22.1
 websockets===9.0.1
 asyncio===3.4.3
+scipy===1.7.3
+pyaudio===0.2.11
