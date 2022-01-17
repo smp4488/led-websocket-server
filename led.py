@@ -3,6 +3,7 @@
 from led_accent import strip as strip_accent
 from led_visualizer import strip as strip_visualizer
 from rpi_ws281x import Color
+from animations import wheel
 
 # import led_visualizer_config as config_visualizer
 # import led_accent_config as config_accent
@@ -102,6 +103,24 @@ def hexToRGB(hex):
     h = hex.lstrip('#')
     return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
+def rainbowCycle(wait_ms=20, iterations=5):
+    """Draw rainbow that uniformly distributes itself across all pixels."""
+    for j in range(256*iterations):
+
+      for c in range(LED_COLUMNS):
+          # need to offset i to correct number for strip
+          for r in range(LED_ROWS):
+            if (r == 2):
+              strip = strip_visualizer
+            else:
+              strip = strip_accent
+            
+            strip.setPixelColor(led_martix[r][c], wheel((int(i * 256 / strip.numPixels()) + j) & 255))
+
+          strip_accent.show()
+          strip_visualizer.show()
+          time.sleep(wait_ms/1000.0)
+
 # Execute this file to run a LED strand test
 # If everything is working, you should see a red, green, and blue pixel scroll
 # across the LED strip continuously
@@ -128,9 +147,12 @@ if __name__ == '__main__':
             # theaterChaseRainbow(strip)
 
             #MATRIX
-            colorWipeMatrix(Color(255, 0, 0))  # Red wipe
-            colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
-            colorWipeMatrix(Color(0, 0, 255))  # Green wipe
+            # colorWipeMatrix(Color(255, 0, 0))  # Red wipe
+            # colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
+            # colorWipeMatrix(Color(0, 0, 255))  # Green wipe
+
+            rainbowCycle()
 
     except KeyboardInterrupt:
-      colorWipe(Color(0,0,0), 10)
+      # colorWipe(Color(0,0,0), 10)
+      colorWipeMatrix(Color(0,0,0), 10)
