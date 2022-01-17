@@ -1,3 +1,4 @@
+from led import set_color_hex
 import eventlet
 import socketio
 
@@ -17,6 +18,11 @@ def my_message(sid, data):
 @sio.event
 def set_color(sid, data):
     print('set_color ', data)
+
+@sio.event
+def set_color_hex(sid, data):
+    print('set_color ', data)
+    set_color_hex(data)
 
 @sio.event
 def get_color(sid, data):

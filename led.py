@@ -23,6 +23,15 @@ def set_color(color):
   strip_accent.show()
   strip_visualizer.show()
 
+# set the color of both strips
+def set_color_hex(hex):
+  rgb = self.hexToRGB(hex)
+  for i in range(TOTAL_LED_COUNT):
+    get_strip_from_index(i).setPixelColor(get_corrected_led_index(i), Color(*(rgb)))
+
+  strip_accent.show()
+  strip_visualizer.show()
+
 def colorWipe(color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     for i in range(TOTAL_LED_COUNT):
@@ -51,6 +60,11 @@ def get_corrected_led_index(i):
   # finally bring i back to where we left off
   else:
     return i - strip_visualizer.numPixels()
+
+# https://stackoverflow.com/a/29643643
+def hexToRGB(self, hex):
+    h = hex.lstrip('#')
+    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
 # Execute this file to run a LED strand test
 # If everything is working, you should see a red, green, and blue pixel scroll
