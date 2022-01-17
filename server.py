@@ -40,7 +40,7 @@ if __name__ == '__main__':
   # print('server started')
 
   loop = asyncio.get_event_loop()
-  loop.create_task(start_server())
+  loop.create_task(start_server)
   loop.create_task(visualizer())
   loop.run_forever()
 
