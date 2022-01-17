@@ -25,7 +25,7 @@ def set_color(color):
 
 # set the color of both strips
 def set_color_hex(hex):
-  rgb = self.hexToRGB(hex)
+  rgb = hexToRGB(hex)
   for i in range(TOTAL_LED_COUNT):
     get_strip_from_index(i).setPixelColor(get_corrected_led_index(i), Color(*(rgb)))
 
