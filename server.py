@@ -32,12 +32,12 @@ def visualizer():
 if __name__ == '__main__':
   # thread1 = threading.Thread(target=start_server)
   # thread1.start()
-
-  # Initialize LEDs
-  # led_visualizer.update()
-  # thread2 = threading.Thread(target=visualizer)
-  # thread2.start()
   try: 
+    # Initialize visualizer LEDs
+    led_visualizer.update()
+    thread2 = threading.Thread(target=visualizer)
+    thread2.start()
+
     start_server = websockets.serve(server, "0.0.0.0", 5000)
     asyncio.get_event_loop().run_until_complete(start_server)
     print('starting socket server on ws://0.0.0.0:5000')
