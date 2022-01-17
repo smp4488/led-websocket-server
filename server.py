@@ -18,20 +18,31 @@ async def server(websocket, path):
                 print('action not found')
                 
     finally:
-      print('finally')
+      print('server finally')
+
+async def visualizer():
+  try:
+    # Start listening to live audio stream
+    visualization.microphone.start_stream(visualization.microphone_update)
+  finally:
+    print('visualizer finally')
 
 if __name__ == '__main__':
   start_server = websockets.serve(server, "0.0.0.0", 5000)
-  asyncio.get_event_loop().run_until_complete(start_server)
+  # asyncio.get_event_loop().run_until_complete(start_server)
   print('starting socket server on ws://0.0.0.0:5000')
 
   # Initialize LEDs
   led_visualizer.update()
-  # Start listening to live audio stream
-  visualization.microphone.start_stream(visualization.microphone_update)
 
-  asyncio.get_event_loop().run_forever()
-  print('server started')
+
+  # asyncio.get_event_loop().run_forever()
+  # print('server started')
+
+  loop = asyncio.get_event_loop()
+  loop.create_task(start_server())
+  loop.create_task(visualizer())
+  loop.run_forever()
 
 
 # import eventlet
