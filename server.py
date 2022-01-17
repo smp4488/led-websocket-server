@@ -1,39 +1,35 @@
 from led import set_color_hex
-
+import led_visualizer
+import visualization
 import asyncio
 import websockets
 import json
 
+# https://websockets.readthedocs.io/en/9.0.1/intro.html
 async def server(websocket, path):
-    # register(websocket) sends user_event() to websocket
-    # await register(websocket)
     try:
-        # await websocket.send(state_event())
         async for message in websocket:
             data = json.loads(message)
             print('new event')
             print(data)
             if data["action"] == "set_color_hex":
                 set_color_hex(data["value"])
-                # STATE["value"] -= 1
-                # await notify_state()
-            elif data["action"] == "plus":
-              print('action not found')
-                # STATE["value"] += 1
-                # await notify_state()
             else:
                 print('action not found')
-                # logging.error("unsupported event: %s", data)
                 
     finally:
       print('finally')
-        # await unregister(websocket)
 
 if __name__ == '__main__':
   start_server = websockets.serve(server, "0.0.0.0", 5000)
   asyncio.get_event_loop().run_until_complete(start_server)
   print('starting socket server on ws://0.0.0.0:5000')
   asyncio.get_event_loop().run_forever()
+  print('server started')
+  # Initialize LEDs
+  led_visualizer.update()
+  # Start listening to live audio stream
+  visualization.microphone.start_stream(visualization.microphone_update)
 
 # import eventlet
 # import socketio

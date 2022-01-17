@@ -15,6 +15,8 @@ TOTAL_LED_COUNT = strip_visualizer.numPixels() + strip_accent.numPixels()
 # 36 LEDs then the visualizer starts then the other 36 for the accent
 LED_OFFSET = 36
 
+CURRENT_COLOR = None
+
 # set the color of both strips
 def set_color(color):
   for i in range(TOTAL_LED_COUNT):
