@@ -18,17 +18,10 @@ LED_OFFSET = 36
 # set the color of both strips
 def set_color(color):
   for i in range(TOTAL_LED_COUNT):
-    get_strip_from_index(i).setPixelColor(i, color)
+    get_strip_from_index(i).setPixelColor(get_corrected_led_index(i), color)
 
   strip_accent.show()
   strip_visualizer.show()
-
-# get the strip based off the led index position
-def get_strip_from_index(i):
-  if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
-    return strip_visualizer
-  else:
-    return strip_accent
 
 def colorWipe(color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
@@ -38,6 +31,13 @@ def colorWipe(color, wait_ms=50):
         strip.setPixelColor(get_corrected_led_index(i), color)
         strip.show()
         time.sleep(wait_ms/1000.0)
+
+# get the strip based off the led index position
+def get_strip_from_index(i):
+  if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
+    return strip_visualizer
+  else:
+    return strip_accent
 
 # get the corrected index for the approiate strip
 def get_corrected_led_index(i):
@@ -58,12 +58,14 @@ def get_corrected_led_index(i):
 if __name__ == '__main__':
     try:
 
+        set_color(Color(255, 255, 255))
+
         while True:
             print ('Color wipe animations.')
-            print(TOTAL_LED_COUNT)
-            colorWipe(Color(255, 0, 0))  # Red wipe
-            colorWipe(Color(0, 255, 0))  # Blue wipe
-            colorWipe(Color(0, 0, 255))  # Green wipe
+
+            # colorWipe(Color(255, 0, 0))  # Red wipe
+            # colorWipe(Color(0, 255, 0))  # Blue wipe
+            # colorWipe(Color(0, 0, 255))  # Green wipe
             # print ('Theater chase animations.')
             # theaterChase(strip, Color(127, 127, 127))  # White theater chase
             # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
