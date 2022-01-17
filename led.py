@@ -18,6 +18,17 @@ LED_OFFSET = 36
 global CURRENT_COLOR 
 CURRENT_COLOR = (0,0,0) # off
 
+
+# led matrix to turn to rows and visualizer strip into a matrix
+LED_ROWS = 5
+LED_COLUMNS = 18
+# looking at it from the front, starts on the top left
+led_martix = [ [71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54],
+              [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53],
+              [ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17],
+              [35, 34, 33. 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18],
+              [ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17] ]
+
 def get_current_color():
   return CURRENT_COLOR
 
