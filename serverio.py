@@ -20,7 +20,7 @@ async def chat_message(sid, data):
     print("message ", data)
 
 @sio.event
-def set_color_hex(sid, data):
+def set_color(sid, data):
     print('set_color ', data)
     set_color_hex(data)
 
