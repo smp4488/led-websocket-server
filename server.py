@@ -11,8 +11,9 @@ async def server(websocket, path):
         # await websocket.send(state_event())
         async for message in websocket:
             data = json.loads(message)
+            print(data)
             if data["action"] == "set_color_hex":
-                set_color_hex(data['value'])
+                set_color_hex(data["value"])
                 # STATE["value"] -= 1
                 # await notify_state()
             elif data["action"] == "plus":
