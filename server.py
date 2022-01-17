@@ -1,4 +1,5 @@
-from led import set_color_hex
+from led import set_color_hex, colorWipe
+from rpi_ws281x import Color
 import led_visualizer
 import visualization
 import asyncio
@@ -17,6 +18,8 @@ async def server(websocket, path):
                 set_color_hex(data["value"])
             else:
                 print('action not found')
+    except KeyboardInterrupt:
+      colorWipe(Color(0,0,0), 10)
                 
     finally:
       print('server finally')

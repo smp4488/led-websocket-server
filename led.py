@@ -2,7 +2,7 @@
 
 from led_accent import strip as strip_accent
 from led_visualizer import strip as strip_visualizer
-from rpi_ws281x import *
+from rpi_ws281x import Color
 
 # import led_visualizer_config as config_visualizer
 # import led_accent_config as config_accent
