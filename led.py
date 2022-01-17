@@ -149,8 +149,8 @@ if __name__ == '__main__':
         # set_color(Color(255, 255, 255))
 
         while True:
-            print ('Color wipe animations.')
-
+            
+            # print ('Color wipe animations.')
             # colorWipe(Color(255, 0, 0))  # Red wipe
             # colorWipe(Color(0, 255, 0))  # Blue wipe
             # colorWipe(Color(0, 0, 255))  # Green wipe
@@ -165,9 +165,10 @@ if __name__ == '__main__':
             # theaterChaseRainbow(strip)
 
             #MATRIX
-            # colorWipeMatrix(Color(255, 0, 0))  # Red wipe
-            # colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
-            # colorWipeMatrix(Color(0, 0, 255))  # Green wipe
+            print ('Color wipe animations.')
+            colorWipeMatrix(Color(255, 0, 0))  # Red wipe
+            colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
+            colorWipeMatrix(Color(0, 0, 255))  # Green wipe
 
             print ('Rainbow cycle.')
             rainbowCycle()
