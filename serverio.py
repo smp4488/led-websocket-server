@@ -35,6 +35,12 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
+def socket_io_server():
+  try:
+    web.run_app(app)
+  finally:
+    print('socketio finally')
+
 def visualizer():
   try:
     # Start listening to live audio stream
@@ -46,7 +52,9 @@ if __name__ == '__main__':
 
   try: 
     # Initialize socketio server
-    web.run_app(app)
+    thread1 = threading.Thread(target=socket_io_server)
+    thread1.start()
+    
     # Initialize visualizer LEDs
     led_visualizer.update()
     thread2 = threading.Thread(target=visualizer)
