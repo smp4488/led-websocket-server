@@ -28,7 +28,7 @@ async def visualizer():
     print('visualizer finally')
 
 if __name__ == '__main__':
-  start_server = websockets.serve(server, "0.0.0.0", 5000)
+  # start_server = websockets.serve(server, "0.0.0.0", 5000)
   # asyncio.get_event_loop().run_until_complete(start_server)
   print('starting socket server on ws://0.0.0.0:5000')
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
   # print('server started')
 
   loop = asyncio.get_event_loop()
-  loop.create_task(start_server)
+  loop.create_task(websockets.serve(server, "0.0.0.0", 5000))
   loop.create_task(visualizer())
   loop.run_forever()
 
