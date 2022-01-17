@@ -33,9 +33,24 @@ def get_strip_from_index(i):
 def colorWipe(color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     for i in range(TOTAL_LED_COUNT):
-        get_strip_from_index(i).setPixelColor(i, color)
-        get_strip_from_index(i).show()
+        # need to offset i to correct number for strip
+        strip = get_strip_from_index(i)
+        strip.setPixelColor(get_corrected_led_index(i), color)
+        strip.show()
         time.sleep(wait_ms/1000.0)
+
+# get the corrected index for the approiate strip
+def get_corrected_led_index(i):
+  # need to offset i to correct number for strip
+  # less than the off set return i
+  if (i < LED_OFFSET):
+    return i
+  # at the second strip, pull the index back down to 0 until we get to the length of the second strip
+  elif (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
+    return i - LED_OFFSET
+  # finally bring i back to where we left off
+  else:
+    return i - strip_visualizer.numPixels()
 
 # Execute this file to run a LED strand test
 # If everything is working, you should see a red, green, and blue pixel scroll
