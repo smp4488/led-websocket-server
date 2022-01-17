@@ -11,6 +11,7 @@ async def server(websocket, path):
         # await websocket.send(state_event())
         async for message in websocket:
             data = json.loads(message)
+            print('new event')
             print(data)
             if data["action"] == "set_color_hex":
                 set_color_hex(data["value"])
@@ -31,6 +32,7 @@ async def server(websocket, path):
 if __name__ == '__main__':
   start_server = websockets.serve(server, "0.0.0.0", 5000)
   asyncio.get_event_loop().run_until_complete(start_server)
+  print('starting socket server on ws://0.0.0.0:5000')
   asyncio.get_event_loop().run_forever()
 
 # import eventlet

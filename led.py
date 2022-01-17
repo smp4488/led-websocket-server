@@ -62,7 +62,7 @@ def get_corrected_led_index(i):
     return i - strip_visualizer.numPixels()
 
 # https://stackoverflow.com/a/29643643
-def hexToRGB(self, hex):
+def hexToRGB(hex):
     h = hex.lstrip('#')
     return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
