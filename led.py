@@ -111,9 +111,9 @@ if __name__ == '__main__':
         while True:
             print ('Color wipe animations.')
 
-            colorWipe(Color(255, 0, 0))  # Red wipe
-            colorWipe(Color(0, 255, 0))  # Blue wipe
-            colorWipe(Color(0, 0, 255))  # Green wipe
+            # colorWipe(Color(255, 0, 0))  # Red wipe
+            # colorWipe(Color(0, 255, 0))  # Blue wipe
+            # colorWipe(Color(0, 0, 255))  # Green wipe
             # colorWipe(Color(0, 0, 0))  # Off wipe
             # print ('Theater chase animations.')
             # theaterChase(strip, Color(127, 127, 127))  # White theater chase
@@ -123,6 +123,11 @@ if __name__ == '__main__':
             # rainbow(strip)
             # rainbowCycle(strip)
             # theaterChaseRainbow(strip)
+
+            #MATRIX
+            colorWipeMatrix(Color(255, 0, 0))  # Red wipe
+            colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
+            colorWipeMatrix(Color(0, 0, 255))  # Green wipe
 
     except KeyboardInterrupt:
       colorWipe(Color(0,0,0), 10)
