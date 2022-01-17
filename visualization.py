@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import division
 import time
 import numpy as np
+from led import CURRENT_COLOR
 from scipy.ndimage.filters import gaussian_filter1d
 import led_visualizer_config as config
 import microphone
@@ -200,12 +201,13 @@ def microphone_update(audio_samples):
     
     vol = np.max(np.abs(y_data))
     if vol < config.MIN_VOLUME_THRESHOLD:
+        global CURRENT_COLOR
         # print('No audio input. Volume below threshold. Volume:', vol)
         # led.pixels = np.tile(0, (3, config.N_PIXELS))
         # need to get the current mycroft color here
         # set to solid color test
-        # for i in range(config.N_PIXELS):
-        #     led.strip.setPixelColor(i, Color(255, 0, 0))
+        for i in range(config.N_PIXELS):
+            led.strip.setPixelColor(i,Color(*(CURRENT_COLOR)))
         
         led.update()
     else:
