@@ -34,6 +34,8 @@ def colorWipe(color, wait_ms=50):
 
 # get the strip based off the led index position
 def get_strip_from_index(i):
+  return strip_accent
+
   if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
     return strip_visualizer
   else:
@@ -65,9 +67,9 @@ if __name__ == '__main__':
             print ('Color wipe animations.')
 
             colorWipe(Color(255, 0, 0))  # Red wipe
-            # colorWipe(Color(0, 255, 0))  # Blue wipe
-            # colorWipe(Color(0, 0, 255))  # Green wipe
-            colorWipe(Color(0, 0, 0))  # Off wipe
+            colorWipe(Color(0, 255, 0))  # Blue wipe
+            colorWipe(Color(0, 0, 255))  # Green wipe
+            # colorWipe(Color(0, 0, 0))  # Off wipe
             # print ('Theater chase animations.')
             # theaterChase(strip, Color(127, 127, 127))  # White theater chase
             # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
