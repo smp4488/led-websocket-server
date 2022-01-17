@@ -18,8 +18,6 @@ async def server(websocket, path):
                 set_color_hex(data["value"])
             else:
                 print('action not found')
-    except KeyboardInterrupt:
-      colorWipe(Color(0,0,0), 10)
                 
     finally:
       print('server finally')
@@ -39,11 +37,14 @@ if __name__ == '__main__':
   # led_visualizer.update()
   # thread2 = threading.Thread(target=visualizer)
   # thread2.start()
+  try: 
+    start_server = websockets.serve(server, "0.0.0.0", 5000)
+    asyncio.get_event_loop().run_until_complete(start_server)
+    print('starting socket server on ws://0.0.0.0:5000')
+    asyncio.get_event_loop().run_forever()
 
-  start_server = websockets.serve(server, "0.0.0.0", 5000)
-  asyncio.get_event_loop().run_until_complete(start_server)
-  print('starting socket server on ws://0.0.0.0:5000')
-  asyncio.get_event_loop().run_forever()
+  except KeyboardInterrupt:
+    colorWipe(Color(0,0,0), 10)
 
 
 # import eventlet
