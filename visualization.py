@@ -206,6 +206,7 @@ def microphone_update(audio_samples):
         # led.pixels = np.tile(0, (3, config.N_PIXELS))
         # need to get the current mycroft color here
         # set to solid color test
+        print(CURRENT_COLOR)
         for i in range(config.N_PIXELS):
             led.strip.setPixelColor(i,Color(*(CURRENT_COLOR)))
         
