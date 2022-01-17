@@ -21,7 +21,7 @@ async def server(websocket, path):
     finally:
       print('server finally')
 
-async def visualizer():
+def visualizer():
   try:
     # Start listening to live audio stream
     visualization.microphone.start_stream(visualization.microphone_update)
