@@ -115,7 +115,7 @@ def rainbowCycle(wait_ms=20, iterations=5):
             else:
               strip = strip_accent
             
-            strip.setPixelColor(led_martix[r][c], wheel((int(i * 256 / strip.numPixels()) + j) & 255))
+            strip.setPixelColor(led_martix[r][c], wheel((int(c * 256 / strip.numPixels()) + j) & 255))
 
           strip_accent.show()
           strip_visualizer.show()
