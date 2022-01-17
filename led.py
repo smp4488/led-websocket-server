@@ -71,8 +71,11 @@ def colorWipeMatrix(color, wait_ms=50):
             strip = strip_accent
           
           strip.setPixelColor(led_martix[r][c], color)
-          strip.show()
-          time.sleep(wait_ms/1000.0)
+
+        # strip.show()
+        strip_accent.show()
+        strip_visualizer.show()
+        time.sleep(wait_ms/1000.0)
 
 # get the strip based off the led index position
 def get_strip_from_index(i):
