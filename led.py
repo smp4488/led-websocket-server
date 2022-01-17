@@ -133,7 +133,7 @@ def rainbow(wait_ms=20, iterations=1):
             else:
               strip = strip_accent
             
-            strip.setPixelColor(led_martix[r][c], wheel((i+j) & 255))
+            strip.setPixelColor(led_martix[r][c], wheel((c+j) & 255))
 
           strip_accent.show()
           strip_visualizer.show()
