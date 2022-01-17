@@ -18,6 +18,9 @@ LED_OFFSET = 36
 global CURRENT_COLOR 
 CURRENT_COLOR = (0,0,0) # off
 
+def get_current_color():
+  return CURRENT_COLOR
+
 # set the color of both strips
 def set_color(color):
   for i in range(TOTAL_LED_COUNT):

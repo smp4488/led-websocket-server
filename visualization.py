@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import division
 import time
 import numpy as np
-from led import CURRENT_COLOR
+from led import CURRENT_COLOR, get_current_color
 from scipy.ndimage.filters import gaussian_filter1d
 import led_visualizer_config as config
 import microphone
@@ -206,9 +206,9 @@ def microphone_update(audio_samples):
         # led.pixels = np.tile(0, (3, config.N_PIXELS))
         # need to get the current mycroft color here
         # set to solid color test
-        print(CURRENT_COLOR)
+        print(get_current_color())
         for i in range(config.N_PIXELS):
-            led.strip.setPixelColor(i,Color(*(CURRENT_COLOR)))
+            led.strip.setPixelColor(i,Color(*(get_current_color())))
         
         led.update()
     else:
