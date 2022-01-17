@@ -24,12 +24,15 @@ if __name__ == '__main__':
   start_server = websockets.serve(server, "0.0.0.0", 5000)
   asyncio.get_event_loop().run_until_complete(start_server)
   print('starting socket server on ws://0.0.0.0:5000')
-  asyncio.get_event_loop().run_forever()
-  print('server started')
+
   # Initialize LEDs
   led_visualizer.update()
   # Start listening to live audio stream
   visualization.microphone.start_stream(visualization.microphone_update)
+
+  asyncio.get_event_loop().run_forever()
+  print('server started')
+
 
 # import eventlet
 # import socketio
