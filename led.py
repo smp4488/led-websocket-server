@@ -58,14 +58,16 @@ def get_corrected_led_index(i):
 if __name__ == '__main__':
     try:
 
-        set_color(Color(255, 255, 255))
+        # set a solid color not in a loop for testing
+        # set_color(Color(255, 255, 255))
 
         while True:
             print ('Color wipe animations.')
 
-            # colorWipe(Color(255, 0, 0))  # Red wipe
+            colorWipe(Color(255, 0, 0))  # Red wipe
             # colorWipe(Color(0, 255, 0))  # Blue wipe
             # colorWipe(Color(0, 0, 255))  # Green wipe
+            colorWipe(Color(0, 0, 0))  # Off wipe
             # print ('Theater chase animations.')
             # theaterChase(strip, Color(127, 127, 127))  # White theater chase
             # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
