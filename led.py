@@ -121,6 +121,24 @@ def rainbowCycle(wait_ms=20, iterations=5):
           strip_visualizer.show()
           time.sleep(wait_ms/1000.0)
 
+def rainbow(wait_ms=20, iterations=1):
+    """Draw rainbow that fades across all pixels at once."""
+    for j in range(256*iterations):
+
+      for c in range(LED_COLUMNS):
+          # need to offset i to correct number for strip
+          for r in range(LED_ROWS):
+            if (r == 2):
+              strip = strip_visualizer
+            else:
+              strip = strip_accent
+            
+            strip.setPixelColor(led_martix[r][c], wheel((i+j) & 255))
+
+          strip_accent.show()
+          strip_visualizer.show()
+          time.sleep(wait_ms/1000.0)
+
 # Execute this file to run a LED strand test
 # If everything is working, you should see a red, green, and blue pixel scroll
 # across the LED strip continuously
@@ -151,7 +169,10 @@ if __name__ == '__main__':
             # colorWipeMatrix(Color(0, 255, 0))  # Blue wipe
             # colorWipeMatrix(Color(0, 0, 255))  # Green wipe
 
+            print ('Rainbow cycle.')
             rainbowCycle()
+            print ('Rainbow.')
+            rainbow()
 
     except KeyboardInterrupt:
       # colorWipe(Color(0,0,0), 10)
