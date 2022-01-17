@@ -117,9 +117,9 @@ def rainbowCycle(wait_ms=20, iterations=5):
             
             strip.setPixelColor(led_martix[r][c], wheel((int(c * 256 / strip.numPixels()) + j) & 255))
 
-          strip_accent.show()
-          strip_visualizer.show()
-          time.sleep(wait_ms/1000.0)
+      strip_accent.show()
+      strip_visualizer.show()
+      time.sleep(wait_ms/1000.0)
 
 def rainbow(wait_ms=20, iterations=1):
     """Draw rainbow that fades across all pixels at once."""
@@ -170,7 +170,7 @@ if __name__ == '__main__':
             # colorWipeMatrix(Color(0, 0, 255))  # Green wipe
 
             print ('Rainbow cycle.')
-            # rainbowCycle()
+            rainbowCycle()
             print ('Rainbow.')
             rainbow()
 
