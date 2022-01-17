@@ -3,7 +3,7 @@ from __future__ import division
 import time
 import numpy as np
 from scipy.ndimage.filters import gaussian_filter1d
-import config
+import led_visualizer_config as config
 import microphone
 import dsp
 import led
