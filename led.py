@@ -60,6 +60,20 @@ def colorWipe(color, wait_ms=50):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
+def colorWipeMatrix(color, wait_ms=50):
+    """Wipe color across display a pixel at a time."""
+    for c in range(LED_COLUMNS):
+        # need to offset i to correct number for strip
+        for r in range(LED_ROWS):
+          if (r == 2):
+            strip = strip_visualizer
+          else:
+            strip = strip_accent
+          
+          strip.setPixelColor(led_martix[r][c], color)
+          strip.show()
+          time.sleep(wait_ms/1000.0)
+
 # get the strip based off the led index position
 def get_strip_from_index(i):
   if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
