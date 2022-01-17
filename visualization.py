@@ -6,7 +6,7 @@ from scipy.ndimage.filters import gaussian_filter1d
 import led_visualizer_config as config
 import microphone
 import dsp
-import led
+import led_visualizer as led
 from rpi_ws281x import Color
 
 _time_prev = time.time() * 1000.0
