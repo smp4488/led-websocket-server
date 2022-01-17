@@ -4,6 +4,7 @@ import visualization
 import asyncio
 import websockets
 import json
+import threading
 
 # https://websockets.readthedocs.io/en/9.0.1/intro.html
 async def server(websocket, path):
@@ -28,21 +29,20 @@ async def visualizer():
     print('visualizer finally')
 
 if __name__ == '__main__':
-  # start_server = websockets.serve(server, "0.0.0.0", 5000)
+  start_server = websockets.serve(server, "0.0.0.0", 5000)
   # asyncio.get_event_loop().run_until_complete(start_server)
   print('starting socket server on ws://0.0.0.0:5000')
+  # asyncio.get_event_loop().run_forever()
+  
 
   # Initialize LEDs
   led_visualizer.update()
 
+  thread1 = threading.Thread(target=start_server)
+  thread1.start()
 
-  # asyncio.get_event_loop().run_forever()
-  # print('server started')
-
-  loop = asyncio.get_event_loop()
-  loop.create_task(websockets.serve(server, "0.0.0.0", 5000))
-  loop.create_task(visualizer())
-  loop.run_forever()
+  thread2 = threading.Thread(target=visualizer)
+  thread2.start()
 
 
 # import eventlet
