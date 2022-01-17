@@ -1,6 +1,10 @@
 from led import set_color_hex, colorWipe
 from aiohttp import web
+from rpi_ws281x import Color
 import socketio
+import threading
+import led_visualizer
+import visualization
 
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
 app = web.Application()
@@ -31,12 +35,23 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
-# app.router.add_routes(routes)
-# app.router.add_static("/", rootdir)
-# for resource in app.router.resources():
-#   if resource.raw_match("/socket.io/"):
-#     continue
-#   cors.add(resource, { '*': aiohttp_cors.ResourceOptions(allow_credentials=True, expose_headers="*", allow_headers="*") })
+def visualizer():
+  try:
+    # Start listening to live audio stream
+    visualization.microphone.start_stream(visualization.microphone_update)
+  finally:
+    print('visualizer finally')
 
 if __name__ == '__main__':
+
+  try: 
+    # Initialize socketio server
     web.run_app(app)
+    # Initialize visualizer LEDs
+    led_visualizer.update()
+    thread2 = threading.Thread(target=visualizer)
+    thread2.start()
+
+
+  except KeyboardInterrupt:
+    colorWipe(Color(0,0,0), 10)
