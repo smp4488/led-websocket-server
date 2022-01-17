@@ -18,13 +18,13 @@ LED_OFFSET = 36
 # set the color of both strips
 def set_color(color):
   for i in range(TOTAL_LED_COUNT):
-    get_strip_from_indes(i).setPixelColor(i, color)
+    get_strip_from_index(i).setPixelColor(i, color)
 
   strip_accent.show()
   strip_visualizer.show()
 
 # get the strip based off the led index position
-def get_strip_from_indes(i):
+def get_strip_from_index(i):
   if (i >= LED_OFFSET and i < LED_OFFSET + strip_visualizer.numPixels()):
     return strip_visualizer
   else:
@@ -33,8 +33,8 @@ def get_strip_from_indes(i):
 def colorWipe(color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
     for i in range(TOTAL_LED_COUNT):
-        get_strip_from_indes(i).setPixelColor(i, color)
-        get_strip_from_indes(i).show()
+        get_strip_from_index(i).setPixelColor(i, color)
+        get_strip_from_index(i).show()
         time.sleep(wait_ms/1000.0)
 
 # Execute this file to run a LED strand test
@@ -45,6 +45,7 @@ if __name__ == '__main__':
 
         while True:
             print ('Color wipe animations.')
+            print(TOTAL_LED_COUNT)
             colorWipe(Color(255, 0, 0))  # Red wipe
             colorWipe(Color(0, 255, 0))  # Blue wipe
             colorWipe(Color(0, 0, 255))  # Green wipe
@@ -58,4 +59,4 @@ if __name__ == '__main__':
             # theaterChaseRainbow(strip)
 
     except KeyboardInterrupt:
-      colorWipe(strip, Color(0,0,0), 10)
+      colorWipe(Color(0,0,0), 10)
