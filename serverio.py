@@ -11,8 +11,8 @@ import visualization
 
 CURRENT_COLOR = None
 
-# sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
-sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
+sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
+# sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
 
