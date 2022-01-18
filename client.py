@@ -6,7 +6,7 @@ sio = socketio.AsyncClient()
 @sio.event
 async def connect():
     print('connection established')
-    await sio.emit('my_message', {'message': 'my response'})
+    await sio.emit('set_color', '#ffffff')
 
 @sio.event
 async def my_message(data):
@@ -20,7 +20,6 @@ async def disconnect():
 async def main():
     await sio.connect('http://192.168.1.121:8080')
     await sio.wait()
-    await sio.emit('set_color', '#ffffff')
 
 if __name__ == '__main__':
     try:
