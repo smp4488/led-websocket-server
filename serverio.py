@@ -1,3 +1,5 @@
+# https://python-socketio.readthedocs.io/en/latest/intro.html
+
 from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
@@ -35,7 +37,7 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
-def socket_io_server():
+async def socket_io_server():
   try:
     web.run_app(app)
   finally:
@@ -52,15 +54,15 @@ if __name__ == '__main__':
 
   try: 
     # Initialize socketio server
-    # thread1 = threading.Thread(target=socket_io_server)
-    # thread1.start()
+    thread1 = threading.Thread(target=socket_io_server)
+    thread1.start()
     
     # Initialize visualizer LEDs
     led_visualizer.update()
     thread2 = threading.Thread(target=visualizer)
     thread2.start()
 
-    web.run_app(app)
+    # web.run_app(app)
 
 
   except KeyboardInterrupt:
