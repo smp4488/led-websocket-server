@@ -37,7 +37,7 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
-async def socket_io_server():
+def socket_io_server():
   try:
     web.run_app(app)
   finally:
