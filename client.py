@@ -20,6 +20,7 @@ async def disconnect():
 async def main():
     await sio.connect('http://192.168.1.121:8080')
     await sio.wait()
+    await sio.emit('set_color', '#ffffff')
 
 if __name__ == '__main__':
     asyncio.run(main())
