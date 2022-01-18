@@ -206,7 +206,7 @@ def microphone_update(audio_samples, current_color):
         # led.pixels = np.tile(0, (3, config.N_PIXELS))
         # need to get the current mycroft color here
         # set to solid color test
-        if (current_color):
+        if (current_color is not None):
             print(current_color)
             setColorMatrixHex(current_color)
 
