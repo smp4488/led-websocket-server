@@ -47,6 +47,8 @@ def visualizer():
   try:
     # Start listening to live audio stream
     visualization.microphone.start_stream(visualization.microphone_update)
+  except KeyboardInterrupt:
+    colorWipe(Color(0,0,0), 10)
   finally:
     print('visualizer finally')
 
@@ -54,15 +56,15 @@ if __name__ == '__main__':
 
   try: 
     # Initialize socketio server
-    thread1 = threading.Thread(target=socket_io_server)
-    thread1.start()
+    # thread1 = threading.Thread(target=socket_io_server)
+    # thread1.start()
     
     # Initialize visualizer LEDs
     led_visualizer.update()
     thread2 = threading.Thread(target=visualizer)
     thread2.start()
 
-    # web.run_app(app)
+    web.run_app(app)
 
 
   except KeyboardInterrupt:
