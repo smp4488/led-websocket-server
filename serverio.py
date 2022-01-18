@@ -9,6 +9,8 @@ import threading
 import led_visualizer
 import visualization
 
+CURRENT_COLOR = None
+
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
@@ -27,9 +29,10 @@ async def chat_message(sid, data):
     print("message ", data)
 
 @sio.event
-def set_color(sid, data):
-    print('set_color ', data)
-    set_color_hex(data)
+def set_color(sid, hex):
+    print('set_color ', hex)
+    CURRENT_COLOR = hex
+    set_color_hex(hex)
 
 @sio.event
 def disconnect(sid):
@@ -44,7 +47,7 @@ def socket_io_server():
   finally:
     print('socketio finally')
 
-def visualizer():
+def visualizer(current_color):
   try:
     # Start listening to live audio stream
     visualization.microphone.start_stream(visualization.microphone_update)
@@ -62,7 +65,7 @@ if __name__ == '__main__':
     
     # Initialize visualizer LEDs
     led_visualizer.update()
-    thread2 = threading.Thread(target=visualizer)
+    thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
     thread2.start()
 
     web.run_app(app)

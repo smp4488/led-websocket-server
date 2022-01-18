@@ -98,6 +98,22 @@ def get_corrected_led_index(i):
   else:
     return i - strip_visualizer.numPixels()
 
+def setColorMatrixHex(hex):
+  rgb = hexToRGB(hex)
+
+  for c in range(LED_COLUMNS):
+      # need to offset i to correct number for strip
+      for r in range(LED_ROWS):
+        if (r == 2):
+          strip = strip_visualizer
+        else:
+          strip = strip_accent
+        
+        strip.setPixelColor(led_martix[r][c], Color(*(rgb)))
+
+  strip_accent.show()
+  strip_visualizer.show()
+
 # https://stackoverflow.com/a/29643643
 def hexToRGB(hex):
     h = hex.lstrip('#')

@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import division
 import time
 import numpy as np
-from led import CURRENT_COLOR, get_current_color
+from led import setColorMatrixHex
 from scipy.ndimage.filters import gaussian_filter1d
 import led_visualizer_config as config
 import microphone
@@ -190,7 +190,7 @@ fft_window = np.hamming(int(config.MIC_RATE / config.FPS) * config.N_ROLLING_HIS
 prev_fps_update = time.time()
 
 
-def microphone_update(audio_samples):
+def microphone_update(audio_samples, current_color):
     global y_roll, prev_rms, prev_exp, prev_fps_update
     # Normalize samples between 0 and 1
     y = audio_samples / 2.0**15
@@ -201,12 +201,14 @@ def microphone_update(audio_samples):
     
     vol = np.max(np.abs(y_data))
     if vol < config.MIN_VOLUME_THRESHOLD:
-        # global CURRENT_COLOR
+
         # print('No audio input. Volume below threshold. Volume:', vol)
-        led.pixels = np.tile(0, (3, config.N_PIXELS))
+        # led.pixels = np.tile(0, (3, config.N_PIXELS))
         # need to get the current mycroft color here
         # set to solid color test
-        # print(get_current_color())
+        print(current_color)
+        setColorMatrixHex(current_color)
+
         # for i in range(config.N_PIXELS):
         #     led.strip.setPixelColor(i,Color(*(get_current_color())))
         
