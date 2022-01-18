@@ -11,7 +11,7 @@ stream = None
 is_listening = True
 
 
-def start_stream(callback):
+def start_stream(callback, current_color):
     
     is_listening = True
     p = pyaudio.PyAudio()
@@ -42,7 +42,7 @@ def start_stream(callback):
                 y = np.fromstring(stream.read(frames_per_buffer, exception_on_overflow=False), dtype=np.int16)
                 y = y.astype(np.float32)
                 stream.read(stream.get_read_available(), exception_on_overflow=False)
-                callback(y)
+                callback(y, current_color)
             else:
                 stream.stop_stream()
                 stream.close()

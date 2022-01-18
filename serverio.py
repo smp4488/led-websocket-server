@@ -50,7 +50,7 @@ def socket_io_server():
 def visualizer(current_color):
   try:
     # Start listening to live audio stream
-    visualization.microphone.start_stream(visualization.microphone_update(current_color))
+    visualization.microphone.start_stream(visualization.microphone_update, current_color)
   except KeyboardInterrupt:
     colorWipe(Color(0,0,0), 10)
   finally:
