@@ -45,7 +45,7 @@ app.router.add_get('/', index)
 def socket_io_server():
   try:
     # web.run_app(app)
-    socketio.run(app)
+    sio.run(app)
   finally:
     print('socketio finally')
 
