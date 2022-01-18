@@ -3,6 +3,7 @@
 from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
+import sys
 import socketio
 import threading
 import led_visualizer
@@ -69,3 +70,4 @@ if __name__ == '__main__':
 
   except KeyboardInterrupt:
     colorWipe(Color(0,0,0), 10)
+    sys.exit(1)
