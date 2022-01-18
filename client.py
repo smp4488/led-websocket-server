@@ -23,4 +23,7 @@ async def main():
     await sio.emit('set_color', '#ffffff')
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print('closing socket client')
