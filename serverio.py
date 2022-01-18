@@ -11,7 +11,8 @@ import visualization
 
 CURRENT_COLOR = None
 
-sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
+# sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
+sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
 
@@ -60,15 +61,15 @@ if __name__ == '__main__':
 
   try: 
     # Initialize socketio server
-    # thread1 = threading.Thread(target=socket_io_server)
-    # thread1.start()
+    thread1 = threading.Thread(target=socket_io_server)
+    thread1.start()
     
     # Initialize visualizer LEDs
     # led_visualizer.update()
-    # thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
-    # thread2.start()
+    thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
+    thread2.start()
 
-    web.run_app(app)
+    # web.run_app(app)
 
 
   except KeyboardInterrupt:
