@@ -35,6 +35,7 @@ async def chat_message(sid, data):
 
 @sio.event
 def set_color(sid, hex):
+    global CURRENT_COLOR
     print('set_color ', hex)
     CURRENT_COLOR = hex
     set_color_hex(hex)
