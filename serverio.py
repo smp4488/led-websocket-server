@@ -23,10 +23,10 @@ async def index(request):
         return web.Response(text=f.read(), content_type='text/html')
 
 @sio.event
-def connect(sid, environ):
+async def connect(sid, environ):
     print("connect ", sid)
     print("current color", CURRENT_COLOR)
-    sio.emit('set_color', CURRENT_COLOR)
+    await sio.emit('set_color', CURRENT_COLOR)
 
 @sio.event
 async def chat_message(sid, data):
