@@ -77,8 +77,8 @@ if __name__ == '__main__':
     
     # Initialize visualizer LEDs
     # led_visualizer.update()
-    thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
-    thread2.start()
+    # thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
+    # thread2.start()
 
     web.run_app(app)
 
