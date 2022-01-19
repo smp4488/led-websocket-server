@@ -207,7 +207,7 @@ def microphone_update(audio_samples, current_color):
         # need to get the current mycroft color here
         # set to solid color test
         if (current_color is not None):
-            print(current_color)
+            print('visualizer color', current_color)
             setColorMatrixHex(current_color)
 
         # for i in range(config.N_PIXELS):
