@@ -24,6 +24,7 @@ async def index(request):
 
 @sio.event
 async def connect(sid, environ):
+    global CURRENT_COLOR
     print("connect ", sid)
     print("current color", CURRENT_COLOR)
     await sio.emit('set_color', CURRENT_COLOR)
