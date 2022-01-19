@@ -4,6 +4,7 @@ from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
 import sys
+import asyncio
 import socketio
 import threading
 import led_visualizer
@@ -24,6 +25,7 @@ async def index(request):
 @sio.event
 def connect(sid, environ):
     print("connect ", sid)
+    sio.emit('set_color', CURRENT_COLOR)
 
 @sio.event
 async def chat_message(sid, data):
@@ -42,10 +44,16 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
-def socket_io_server():
+def socket_io_server(runner):
   try:
     # web.run_app(app)
-    sio.run(app)
+    # sio.run(app)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(runner.setup())
+    site = web.TCPSite(runner, 'localhost', 8080)
+    loop.run_until_complete(site.start())
+    loop.run_forever()
   finally:
     print('socketio finally')
 
@@ -62,15 +70,16 @@ if __name__ == '__main__':
 
   try: 
     # Initialize socketio server
-    thread1 = threading.Thread(target=socket_io_server)
-    thread1.start()
+    # runner = web.AppRunner(app)
+    # thread1 = threading.Thread(target=socket_io_server, args=(runner, ))
+    # thread1.start()
     
     # Initialize visualizer LEDs
     # led_visualizer.update()
     thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
     thread2.start()
 
-    # web.run_app(app)
+    web.run_app(app)
 
 
   except KeyboardInterrupt:
