@@ -44,18 +44,18 @@ def disconnect(sid):
 app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
-def socket_io_server(runner):
-  try:
-    # web.run_app(app)
-    # sio.run(app)
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(runner.setup())
-    site = web.TCPSite(runner, 'localhost', 8080)
-    loop.run_until_complete(site.start())
-    loop.run_forever()
-  finally:
-    print('socketio finally')
+# def socket_io_server(runner):
+#   try:
+#     # web.run_app(app)
+#     # sio.run(app)
+#     loop = asyncio.new_event_loop()
+#     asyncio.set_event_loop(loop)
+#     loop.run_until_complete(runner.setup())
+#     site = web.TCPSite(runner, 'localhost', 8080)
+#     loop.run_until_complete(site.start())
+#     loop.run_forever()
+#   finally:
+#     print('socketio finally')
 
 def visualizer(current_color):
   try:
