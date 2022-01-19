@@ -34,11 +34,12 @@ async def chat_message(sid, data):
     print("message ", data)
 
 @sio.event
-def set_color(sid, hex):
+async def set_color(sid, hex):
     global CURRENT_COLOR
     print('set_color ', hex)
     CURRENT_COLOR = hex
     set_color_hex(hex)
+    await sio.emit('set_color', hex)
 
 @sio.event
 def disconnect(sid):
