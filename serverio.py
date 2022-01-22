@@ -21,10 +21,10 @@ sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*', logge
 app = web.Application()
 sio.attach(app)
 
-# async def index(request):
-#     """Serve the client-side application."""
-#     with open('static/index.html') as f:
-#         return web.Response(text=f.read(), content_type='text/html')
+async def index(request):
+    """Serve the client-side application."""
+    with open('static/index.html') as f:
+        return web.Response(text=f.read(), content_type='text/html')
 
 @sio.event
 async def connect(sid, environ):
@@ -46,8 +46,8 @@ async def set_color(sid, hex):
 def disconnect(sid):
     logger.info('disconnect ' + sid)
 
-# app.router.add_static('/static', 'static')
-# app.router.add_get('/', index)
+app.router.add_static('/assets', 'static/assets')
+app.router.add_get('/', index)
 
 # def socket_io_server(runner):
 #   try:
