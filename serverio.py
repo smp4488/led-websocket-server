@@ -14,7 +14,7 @@ import visualization
 
 logger = logging.getLogger()
 
-CURRENT_COLOR = None
+CURRENT_COLOR = '#000000'
 
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*', logger=logger)
 # sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
