@@ -47,25 +47,21 @@ sio.attach(app)
 @sio.event
 async def connect(sid, environ):
     global CURRENT_COLOR
-    logger.info("connect ", sid)
+    logger.info("connect " + sid)
     # print("current color", CURRENT_COLOR)
     await sio.emit('set_color', CURRENT_COLOR)
 
 @sio.event
-async def chat_message(sid, data):
-    print("message ", data)
-
-@sio.event
 async def set_color(sid, hex):
     global CURRENT_COLOR
-    logger.info('set_color ', hex)
+    logger.info('set_color ' + hex)
     CURRENT_COLOR = hex
     set_color_hex(hex)
     await sio.emit('set_color', hex)
 
 @sio.event
 def disconnect(sid):
-    logger.info('disconnect ', sid)
+    logger.info('disconnect ' + sid)
 
 # app.router.add_static('/static', 'static')
 # app.router.add_get('/', index)
