@@ -85,23 +85,25 @@ def handler_stop_signals(signum, frame):
 signal.signal(signal.SIGINT, handler_stop_signals)
 signal.signal(signal.SIGTERM, handler_stop_signals)
 
-if __name__ == '__main__':
+web.run_app(app)
 
-  try: 
-    # Initialize socketio server
-    # runner = web.AppRunner(app)
-    # thread1 = threading.Thread(target=socket_io_server, args=(runner, ))
-    # thread1.start()
+# if __name__ == '__main__':
+
+#   try: 
+#     # Initialize socketio server
+#     # runner = web.AppRunner(app)
+#     # thread1 = threading.Thread(target=socket_io_server, args=(runner, ))
+#     # thread1.start()
     
-    # Initialize visualizer LEDs
-    # led_visualizer.update()
-    # thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
-    # thread2.start()
+#     # Initialize visualizer LEDs
+#     # led_visualizer.update()
+#     # thread2 = threading.Thread(target=visualizer, args=(CURRENT_COLOR, ))
+#     # thread2.start()
 
-    web.run_app(app)
+#     web.run_app(app)
 
 
-  except KeyboardInterrupt:
-    logger.warning('Keyboard interrupt (SIGINT) received...')
-    colorWipe(Color(0,0,0), 10)
-    sys.exit(1)
+#   except KeyboardInterrupt:
+#     logger.warning('Keyboard interrupt (SIGINT) received...')
+#     colorWipe(Color(0,0,0), 10)
+#     sys.exit(1)
