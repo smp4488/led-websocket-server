@@ -3,8 +3,8 @@
 from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
-import logger
-# import logging
+# import logger
+import logging
 import sys
 import asyncio
 import socketio
@@ -12,7 +12,7 @@ import threading
 import led_visualizer
 import visualization
 
-# logger = logging.getLogger('root')
+logger = logging.getLogger('root')
 
 # import logging
 # from logging.handlers import RotatingFileHandler
