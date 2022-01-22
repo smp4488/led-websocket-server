@@ -77,14 +77,17 @@ def visualizer(current_color):
 def handler_stop_signals(signum, frame):
   logger.warning('SIGTERM received...')
   colorWipe(Color(0,0,0), 10)
+  sio.disconnect()
+  app.shutdown()
+  app.cleanup()
   sys.exit(0)
+
+signal.signal(signal.SIGINT, handler_stop_signals)
+signal.signal(signal.SIGTERM, handler_stop_signals)
 
 if __name__ == '__main__':
 
   try: 
-    signal.signal(signal.SIGINT, handler_stop_signals)
-    signal.signal(signal.SIGTERM, handler_stop_signals)
-
     # Initialize socketio server
     # runner = web.AppRunner(app)
     # thread1 = threading.Thread(target=socket_io_server, args=(runner, ))
@@ -99,5 +102,6 @@ if __name__ == '__main__':
 
 
   except KeyboardInterrupt:
+    logger.warning('Keyboard interrupt (SIGINT) received...')
     colorWipe(Color(0,0,0), 10)
     sys.exit(1)
