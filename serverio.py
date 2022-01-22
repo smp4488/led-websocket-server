@@ -75,8 +75,9 @@ def visualizer(current_color):
     logger.info('visualizer finally')
 
 def handler_stop_signals(signum, frame):
+  logger.warning('SIGTERM received...')
   colorWipe(Color(0,0,0), 10)
-  sys.exit(1)
+  sys.exit(0)
 
 if __name__ == '__main__':
 
