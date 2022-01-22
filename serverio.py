@@ -37,6 +37,7 @@ async def connect(sid, environ):
 async def set_color(sid, hex):
     global CURRENT_COLOR
     logger.info('set_color ' + hex)
+    logger.info('current color ' + CURRENT_COLOR)
     CURRENT_COLOR = hex
     set_color_hex(hex)
     await sio.emit('set_color', hex)
