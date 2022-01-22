@@ -12,7 +12,7 @@ import threading
 import led_visualizer
 import visualization
 
-logger = logging.getLogger('root')
+logger = logging.getLogger()
 
 # import logging
 # from logging.handlers import RotatingFileHandler
