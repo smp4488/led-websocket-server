@@ -4,7 +4,7 @@ from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
 import logger
-import logging
+# import logging
 import sys
 import asyncio
 import socketio
@@ -12,12 +12,29 @@ import threading
 import led_visualizer
 import visualization
 
+# logger = logging.getLogger('root')
+
+import logging
+from logging.handlers import RotatingFileHandler
+
+log_formatter = logging.Formatter('%(asctime)s %(levelname)s %(funcName)s(%(lineno)d) %(message)s')
+
+logFile = '/var/log/serverio.log'
+
+my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=5*1024*1024, 
+                                 backupCount=2, encoding=None, delay=0)
+my_handler.setFormatter(log_formatter)
+my_handler.setLevel(logging.INFO)
+
 logger = logging.getLogger('root')
+logger.setLevel(logging.INFO)
+
+logger.addHandler(my_handler)
 
 
 CURRENT_COLOR = None
 
-sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
+sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*', logger=logger)
 # sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
