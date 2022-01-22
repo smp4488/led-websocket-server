@@ -28,4 +28,4 @@ logger.setLevel(logging.INFO)
 #     logger.handlers.clear()
 
 logger.addHandler(file_handler)
-logger.addHandler(logging.StreamHandler(sys.stdout))
+# logger.addHandler(logging.StreamHandler(sys.stdout))
