@@ -3,12 +3,14 @@
 from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
+from logger import logger
 import sys
 import asyncio
 import socketio
 import threading
 import led_visualizer
 import visualization
+
 
 CURRENT_COLOR = None
 
@@ -25,8 +27,8 @@ sio.attach(app)
 @sio.event
 async def connect(sid, environ):
     global CURRENT_COLOR
-    print("connect ", sid)
-    print("current color", CURRENT_COLOR)
+    logger.info("connect ", sid)
+    # print("current color", CURRENT_COLOR)
     await sio.emit('set_color', CURRENT_COLOR)
 
 @sio.event
@@ -36,14 +38,14 @@ async def chat_message(sid, data):
 @sio.event
 async def set_color(sid, hex):
     global CURRENT_COLOR
-    print('set_color ', hex)
+    logger.info('set_color ', hex)
     CURRENT_COLOR = hex
     set_color_hex(hex)
     await sio.emit('set_color', hex)
 
 @sio.event
 def disconnect(sid):
-    print('disconnect ', sid)
+    logger.info('disconnect ', sid)
 
 # app.router.add_static('/static', 'static')
 # app.router.add_get('/', index)
@@ -68,7 +70,7 @@ def visualizer(current_color):
   except KeyboardInterrupt:
     colorWipe(Color(0,0,0), 10)
   finally:
-    print('visualizer finally')
+    logger.info('visualizer finally')
 
 if __name__ == '__main__':
 
