@@ -10,7 +10,7 @@ my_handler = RotatingFileHandler(logFile, mode='a', maxBytes=5*1024*1024,
 my_handler.setFormatter(log_formatter)
 my_handler.setLevel(logging.INFO)
 
-logger = logging.getLogger()
+logger = logging.getLogger('root')
 logger.setLevel(logging.INFO)
 
 # if (logger.hasHandlers()):
