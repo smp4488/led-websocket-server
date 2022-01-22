@@ -3,6 +3,7 @@
 from led import set_color_hex, colorWipe
 from aiohttp import web
 from rpi_ws281x import Color
+from pathlib import Path
 import logger
 import logging
 import sys
@@ -13,6 +14,7 @@ import led_visualizer
 import visualization
 
 logger = logging.getLogger()
+script_location = Path(__file__).absolute().parent
 
 CURRENT_COLOR = '#000000'
 
@@ -23,7 +25,7 @@ sio.attach(app)
 
 async def index(request):
     """Serve the client-side application."""
-    with open('static/index.html') as f:
+    with open(script_location + 'static/index.html') as f:
         return web.Response(text=f.read(), content_type='text/html')
 
 @sio.event
