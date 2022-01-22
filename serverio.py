@@ -48,7 +48,7 @@ async def set_color(sid, hex):
 def disconnect(sid):
     logger.info('disconnect ' + sid)
 
-# app.router.add_static('/assets', './static/assets')
+app.router.add_static('/assets', script_location / 'static/assets')
 app.router.add_get('/', index)
 
 # def socket_io_server(runner):
