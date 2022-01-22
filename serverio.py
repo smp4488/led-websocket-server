@@ -7,6 +7,7 @@ from pathlib import Path
 import logger
 import logging
 import sys
+import signal
 import asyncio
 import socketio
 import threading
@@ -73,9 +74,16 @@ def visualizer(current_color):
   finally:
     logger.info('visualizer finally')
 
+def handler_stop_signals(signum, frame):
+  colorWipe(Color(0,0,0), 10)
+  sys.exit(1)
+
 if __name__ == '__main__':
 
   try: 
+    signal.signal(signal.SIGINT, handler_stop_signals)
+    signal.signal(signal.SIGTERM, handler_stop_signals)
+
     # Initialize socketio server
     # runner = web.AppRunner(app)
     # thread1 = threading.Thread(target=socket_io_server, args=(runner, ))
