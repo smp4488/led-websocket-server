@@ -25,7 +25,10 @@ class EffectsManager:
     return list(filter(lambda effect: effect.name == name, self.effects))
 
   async def set_effect(self, name, options):
+    self.logger.info('stopping ' + self.current_effect.name)
     self.current_effect.stop()
+
     effect = self.get_effect_by_name(name)[0]
+    self.current_effect = effect
     if effect:
       await effect.start(options)
