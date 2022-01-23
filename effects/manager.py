@@ -1,10 +1,9 @@
 import logging
-from typing import List
 
 import effects.solid
 
 class EffectsManager:
-  effects = List()
+  effects = list()
 
   def __init__(self):
     self.logger = logging.getLogger()
