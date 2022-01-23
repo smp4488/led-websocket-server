@@ -7,7 +7,7 @@ class Effect:
       self.name = options['name']
       self.description = options['description']
       self.title = options['title']
-      self.logger = logging.getLogger()
+      # self.logger = logging.getLogger()
 
       self.options = options
 
@@ -22,4 +22,4 @@ class Effect:
     pass
 
   def toJSON(self):
-    return json.dumps(self.options)
+    return json.dumps(self.__dict__)
