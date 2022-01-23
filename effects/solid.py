@@ -13,5 +13,5 @@ class Solid(effects.effect.Effect):
     set_color_hex('#000000')
 
   def run(self, options):
-    if options.color:
-      set_color_hex(options.color)
+    if options['color']:
+      set_color_hex(options['color'])
