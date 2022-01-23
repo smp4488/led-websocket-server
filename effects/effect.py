@@ -7,9 +7,10 @@ class Effect:
       self.name = options['name']
       self.description = options['description']
       self.title = options['title']
+      self.running = False
       # self.logger = logging.getLogger()
 
-      self.options = options
+      # self.options = options
 
   def start(self, options):
     self.running = True
