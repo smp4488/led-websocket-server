@@ -1,6 +1,6 @@
 # https://python-socketio.readthedocs.io/en/latest/intro.html
 
-# from led import set_color_hex, colorWipe
+from led import set_color_hex, colorWipe
 from aiohttp import web
 # from rpi_ws281x import Color
 from pathlib import Path
