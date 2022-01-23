@@ -2,6 +2,7 @@ import logging
 import json
 
 class Effect:
+  logger = logging.getLogger()
   running = False
   def __init__(self, options):
       self.name = options['name']
