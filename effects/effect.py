@@ -3,9 +3,9 @@ import logging
 class Effect:
   running = False
   def __init__(self, options):
-      self.name = options.name
-      self.description = options.description
-      self.title = options.title
+      self.name = options['name']
+      self.description = options['description']
+      self.title = options['title']
       self.logger = logging.getLogger()
 
   def start(self, options):
