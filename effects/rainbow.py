@@ -1,4 +1,6 @@
+
 from led import LED_COLUMNS, LED_ROWS, strip_visualizer, strip_accent, led_martix
+import asyncio
 import effects.effect
 
 class Rainbow(effects.effect.Effect):
@@ -29,3 +31,4 @@ class Rainbow(effects.effect.Effect):
 
         strip_accent.show()
         strip_visualizer.show()
+        await asyncio.sleep
