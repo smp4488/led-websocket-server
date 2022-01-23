@@ -11,7 +11,7 @@ class Solid(effects.effect.Effect):
     self.running = False
     set_color_hex('#000000')
 
-  async def run(self, options):
+  def run(self, options):
     self.logger.info('running solid ' + options['color'])
     if options['color']:
-      await set_color_hex(options['color'])
+      set_color_hex(options['color'])
