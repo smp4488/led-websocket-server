@@ -9,6 +9,8 @@ class Effect:
       self.title = options['title']
       self.logger = logging.getLogger()
 
+      self.options = options
+
   def start(self, options):
     self.running = True
     self.run(options)
@@ -20,4 +22,4 @@ class Effect:
     pass
 
   def toJSON(self):
-    return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    return json.dumps(self.__dict__)
