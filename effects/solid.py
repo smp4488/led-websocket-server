@@ -3,12 +3,10 @@ from led import set_color_hex, colorWipe
 import effects.effect
 
 class Solid(effects.effect.Effect):
-  name = 'solid'
-  description = 'A solid color'
-  title = 'Solid'
 
   def __init__(self):
-      super().__init__(self)
+      options = { 'name': 'solid', 'description': 'A solid color', 'title': 'Solid' }
+      super().__init__(self, options)
 
   def stop(self):
     self.running = False
