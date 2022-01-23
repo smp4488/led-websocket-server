@@ -20,12 +20,15 @@ script_location = Path(__file__).absolute().parent
 
 CURRENT_COLOR = '#000000'
 
+
+
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*', logger=logger)
-# sio = socketio.Server(async_mode='threading', cors_allowed_origins='*')
 app = web.Application()
 sio.attach(app)
 
 effects = EffectsManager()
+
+main_event_loop = asyncio.get_event_loop()
 
 async def index(request):
     """Serve the client-side application."""
@@ -54,8 +57,9 @@ async def set_color(sid, hex):
 async def set_effect(sid, data):
   logger.info('set effect ' + data['name'])
   # effects.set_effect(data['name'], data['options'])
-  sio.start_background_task(asyncio.run(effects.set_effect), data['name'], data['options'])
-  await sio.sleep(1)
+  # sio.start_background_task(effects.set_effect, data['name'], data['options'])
+  asyncio.ensure_future(effects.set_effect(), data['name'], data['options'])
+  # await sio.sleep(1)
 
 @sio.event
 async def get_effects(sid):
