@@ -6,7 +6,7 @@ class Solid(effects.effect.Effect):
 
   def __init__(self):
       options = { 'name': 'solid', 'description': 'A solid color', 'title': 'Solid' }
-      super().__init__(self, options)
+      super().__init__(options)
 
   def stop(self):
     self.running = False
