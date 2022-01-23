@@ -1,4 +1,5 @@
 from rpi_ws281x import Color
+import time
 
 # Define functions which animate LEDs in various ways.
 def colorWipe(strip, color, wait_ms=50):

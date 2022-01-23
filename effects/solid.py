@@ -1,4 +1,3 @@
-# from effect import Effect
 from led import set_color_hex, colorWipe
 import effects.effect
 

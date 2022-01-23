@@ -1,6 +1,7 @@
 import logging
 
 import effects.solid
+import effects.rainbow
 
 class EffectsManager:
   effects = list()
@@ -11,6 +12,7 @@ class EffectsManager:
 
     # adding each effect
     self.effects.append(effects.solid.Solid())
+    self.effects.append(effects.rainbow.Rainbow())
 
     # set solid as currnet
     self.current_effect = self.effects[0] 
