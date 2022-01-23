@@ -1,7 +1,8 @@
-from effect import Effect
+# from effect import Effect
 from led import set_color_hex, colorWipe
+import effects.effect
 
-class Solid(Effect):
+class Solid(effects.effect):
   name = 'solid'
   description = 'A solid color'
   title = 'Solid'
