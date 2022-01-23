@@ -53,7 +53,7 @@ async def set_color(sid, hex):
 @sio.event
 async def set_effect(sid, data):
   logger.info('set effect ' + data['name'])
-  effects.set_effect(data['name'], data['options'])
+  # effects.set_effect(data['name'], data['options'])
   sio.start_background_task(effects.set_effect, data['name'], data['options'])
   await sio.sleep(1)
 
