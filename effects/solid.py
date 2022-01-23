@@ -2,7 +2,7 @@
 from led import set_color_hex, colorWipe
 import effects.effect
 
-class Solid(effects.effect):
+class Solid(effects.effect.Effect):
   name = 'solid'
   description = 'A solid color'
   title = 'Solid'

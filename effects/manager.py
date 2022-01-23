@@ -11,7 +11,7 @@ class EffectsManager:
     
 
     # adding each effect
-    self.effects.append(effects.solid())
+    self.effects.append(effects.solid.Solid())
 
     # set solid as currnet
     self.current_effect = self.effects[0] 
