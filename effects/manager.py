@@ -20,7 +20,7 @@ class EffectsManager:
     # return [effect.toJSON() for effect in self.effects]
 
   def get_effect_by_name(self, name):
-    return filter(lambda effect: effect.name == name, self.effects)
+    return list(filter(lambda effect: effect.name == name, self.effects))
 
   def set_effect(self, name, options):
     self.current_effect.stop()
