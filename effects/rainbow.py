@@ -10,8 +10,8 @@ class Rainbow(effects.effect.Effect):
   def stop(self):
     self.running = False
 
-  def run(self, options):
-    self.logger.info('running rainbox')
+  async def run(self, options):
+    self.logger.info('running rainbow')
 
     while self.running:
       """Draw rainbow that fades across all pixels at once."""

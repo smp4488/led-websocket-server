@@ -21,7 +21,7 @@ class Effect:
   def stop(self):
     self.running = False
 
-  def run(self, options):
+  async def run(self, options):
     pass
 
   def toJSON(self):

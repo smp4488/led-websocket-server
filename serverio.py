@@ -54,7 +54,7 @@ async def set_color(sid, hex):
 async def set_effect(sid, data):
   logger.info('set effect ' + data['name'])
   effects.set_effect(data['name'], data['options'])
-  sio.start_background_task(target=effects.set_effect, args=[data['name'], data['options']])
+  sio.start_background_task(effects.set_effect, data['name'], data['options'])
   sio.sleep(1)
 
 @sio.event
@@ -103,6 +103,7 @@ def handler_stop_signals(signum, frame):
 signal.signal(signal.SIGINT, handler_stop_signals)
 signal.signal(signal.SIGTERM, handler_stop_signals)
 
+sio.start_background_task(target=visualizer, args=(CURRENT_COLOR))
 web.run_app(app)
 
 # if __name__ == '__main__':
