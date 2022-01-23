@@ -103,7 +103,7 @@ def handler_stop_signals(signum, frame):
 signal.signal(signal.SIGINT, handler_stop_signals)
 signal.signal(signal.SIGTERM, handler_stop_signals)
 
-sio.start_background_task(target=visualizer, args=(CURRENT_COLOR))
+sio.start_background_task(visualizer, CURRENT_COLOR)
 web.run_app(app)
 
 # if __name__ == '__main__':
