@@ -8,7 +8,7 @@ import logger
 import logging
 import sys
 import signal
-# import asyncio
+import asyncio
 import socketio
 # import threading
 # import led_visualizer
@@ -54,7 +54,7 @@ async def set_color(sid, hex):
 async def set_effect(sid, data):
   logger.info('set effect ' + data['name'])
   # effects.set_effect(data['name'], data['options'])
-  sio.start_background_task(effects.set_effect, data['name'], data['options'])
+  sio.start_background_task(asyncio.ensure_future(effects.set_effect), data['name'], data['options'])
   await sio.sleep(1)
 
 @sio.event
