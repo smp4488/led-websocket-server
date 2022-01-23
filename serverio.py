@@ -52,7 +52,7 @@ async def set_color(sid, hex):
 
 @sio.event
 async def set_effect(sid, data):
-  logger.info('set effect' + data['name'])
+  logger.info('set effect ' + data['name'])
   effects.set_effect(data['name'], data['options'])
 
 @sio.event
