@@ -25,7 +25,7 @@ class Effect:
     pass
 
   def toJSON(self):
-    return json.dumps(self.__dict__)
+    return self.__dict__
 
   def wheel(pos):
       """Generate rainbow colors across 0-255 positions."""
