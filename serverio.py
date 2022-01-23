@@ -36,8 +36,9 @@ async def index(request):
 async def connect(sid, environ):
     global CURRENT_COLOR
     logger.info("connect " + sid)
-    # print("current color", CURRENT_COLOR)
+    logger.info("current color", CURRENT_COLOR)
     await sio.emit('set_color', CURRENT_COLOR, room = sid)
+    await sio.emit(effects.get_effects(), room = sid)
 
 @sio.event
 async def set_color(sid, hex):
@@ -50,14 +51,13 @@ async def set_color(sid, hex):
 
 @sio.event
 async def set_effect(sid, data):
-  logger.info('set effect' + data.name)
-  effects.set_effect(data.name, data.options)
+  logger.info('set effect' + data['name'])
+  effects.set_effect(data['name'], data['options'])
 
 @sio.event
 async def get_effects(sid):
   logger.info('get_effects')
-  data = effects.get_effects()
-  sio.emit(data, room = sid)
+  sio.emit(effects.get_effects(), room = sid)
 
 @sio.event
 def disconnect(sid):
