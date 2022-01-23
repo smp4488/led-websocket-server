@@ -1,4 +1,5 @@
 import logging
+import json
 
 class Effect:
   running = False
@@ -17,3 +18,6 @@ class Effect:
 
   def run(self, options):
     pass
+
+  def toJSON(self):
+    return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)

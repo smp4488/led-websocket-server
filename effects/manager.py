@@ -17,6 +17,7 @@ class EffectsManager:
 
   def get_effects(self):
     return self.effects
+    # return [effect.toJSON() for effect in self.effects]
 
   def get_effect_by_name(self, name):
     return filter(lambda effect: effect.name == name, self.effects)

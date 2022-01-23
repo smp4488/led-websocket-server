@@ -38,7 +38,7 @@ async def connect(sid, environ):
     logger.info("connect " + sid)
     logger.info("current color", CURRENT_COLOR)
     await sio.emit('set_color', CURRENT_COLOR, room = sid)
-    await sio.emit(effects.get_effects(), room = sid)
+    await sio.emit([effect.toJSON() for effect in effects.effects], room = sid)
 
 @sio.event
 async def set_color(sid, hex):
