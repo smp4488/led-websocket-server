@@ -22,4 +22,4 @@ class Effect:
     pass
 
   def toJSON(self):
-    return json.dumps(self.__dict__)
+    return json.dumps(self.options)
