@@ -24,8 +24,8 @@ class EffectsManager:
   def get_effect_by_name(self, name):
     return list(filter(lambda effect: effect.name == name, self.effects))
 
-  async def set_effect(self, name, options):
+  def set_effect(self, name, options):
     self.current_effect.stop()
     effect = self.get_effect_by_name(name)[0]
     if effect:
-      await effect.start(options)
+      effect.start(options)
