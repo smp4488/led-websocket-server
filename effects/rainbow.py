@@ -31,4 +31,4 @@ class Rainbow(effects.effect.Effect):
 
         strip_accent.show()
         strip_visualizer.show()
-        await asyncio.sleep
+        await asyncio.sleep(1)
