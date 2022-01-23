@@ -1,17 +1,17 @@
 # https://python-socketio.readthedocs.io/en/latest/intro.html
 
-from led import set_color_hex, colorWipe
+# from led import set_color_hex, colorWipe
 from aiohttp import web
-from rpi_ws281x import Color
+# from rpi_ws281x import Color
 from pathlib import Path
 import logger
 import logging
 import sys
 import signal
-import asyncio
+# import asyncio
 import socketio
-import threading
-import led_visualizer
+# import threading
+# import led_visualizer
 import visualization
 from effects.manager import EffectsManager
 
@@ -41,14 +41,14 @@ async def connect(sid, environ):
     data = [effect.toJSON() for effect in effects.effects]
     await sio.emit('get_effects', data, room = sid)
 
-@sio.event
-async def set_color(sid, hex):
-    global CURRENT_COLOR
-    logger.info('set_color ' + hex)
-    logger.info('current color ' + CURRENT_COLOR)
-    CURRENT_COLOR = hex
-    set_color_hex(hex)
-    await sio.emit('set_color', hex)
+# @sio.event
+# async def set_color(sid, hex):
+#     global CURRENT_COLOR
+#     logger.info('set_color ' + hex)
+#     logger.info('current color ' + CURRENT_COLOR)
+#     CURRENT_COLOR = hex
+#     set_color_hex(hex)
+#     await sio.emit('set_color', hex)
 
 @sio.event
 async def set_effect(sid, data):
@@ -85,13 +85,14 @@ def visualizer(current_color):
     # Start listening to live audio stream
     visualization.microphone.start_stream(visualization.microphone_update, current_color)
   except KeyboardInterrupt:
-    colorWipe(Color(0,0,0), 10)
+    logger.warning('Keyboard interrupt (SIGINT) received...')
+    # colorWipe(Color(0,0,0), 10)
   finally:
     logger.info('visualizer finally')
 
 def handler_stop_signals(signum, frame):
   logger.warning('SIGTERM received...')
-  colorWipe(Color(0,0,0), 10)
+  # colorWipe(Color(0,0,0), 10)
   sio.disconnect()
   app.shutdown()
   app.cleanup()
