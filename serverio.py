@@ -104,7 +104,7 @@ signal.signal(signal.SIGINT, handler_stop_signals)
 signal.signal(signal.SIGTERM, handler_stop_signals)
 
 # sio.start_background_task(visualizer, CURRENT_COLOR)
-web.run_app(app)
+web.run_app(app, port=80)
 
 # if __name__ == '__main__':
 
