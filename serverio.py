@@ -59,8 +59,13 @@ async def set_effect(sid, data):
   # effects.set_effect(data['name'], data['options'])
   # sio.start_background_task(effects.set_effect, data['name'], data['options'])
   # asyncio.ensure_future(effects.set_effect(data['name'], data['options']))
-  main_event_loop.create_task(effects.set_effect(data['name'], data['options']))
+  # main_event_loop.create_task(effects.set_effect(data['name'], data['options']))
+  sio.start_background_task(run_effect, data)
   # await sio.sleep(1)
+
+@asyncio.coroutine
+def run_effect(data):
+  effects.set_effect(data['name'], data['options'])
 
 @sio.event
 async def get_effects(sid):
