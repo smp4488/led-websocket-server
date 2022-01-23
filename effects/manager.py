@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from solid import Solid
+import effects.solid
 
 class EffectsManager:
   effects = List()
@@ -11,7 +11,7 @@ class EffectsManager:
     
 
     # adding each effect
-    self.effects.append(Solid())
+    self.effects.append(effects.solid())
 
     # set solid as currnet
     self.current_effect = self.effects[0] 
