@@ -12,7 +12,7 @@ class Rainbow(effects.effect.Effect):
   def stop(self):
     self.running = False
 
-  async def run(self, options):
+  def run(self, options):
     self.logger.info('running rainbow')
 
     while self.running:
@@ -31,4 +31,4 @@ class Rainbow(effects.effect.Effect):
 
         strip_accent.show()
         strip_visualizer.show()
-      await asyncio.sleep(0.001)
+      # await asyncio.sleep(0.001)

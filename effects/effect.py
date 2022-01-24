@@ -14,9 +14,13 @@ class Effect:
 
       # self.options = options
 
-  async def start(self, options):
+  # async def start(self, options):
+  #   self.running = True
+  #   await self.run(options)
+
+  def start(self, options):
     self.running = True
-    await self.run(options)
+    self.run(options)
 
   def stop(self):
     self.running = False
