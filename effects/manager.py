@@ -33,7 +33,7 @@ class EffectsManager:
   #   if effect:
   #     await effect.start(options)
 
-  def set_effect(self, name, options):
+  async def set_effect(self, name, options):
     self.logger.info('stopping ' + self.current_effect.name)
     self.current_effect.stop()
 
