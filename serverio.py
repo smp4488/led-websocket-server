@@ -73,7 +73,7 @@ async def set_effect(sid, data):
 #   await effects.set_effect(data['name'], data['options'])
 
 # @asyncio.coroutine
-def run_effect(data):
+async def run_effect(data):
   effects.set_effect(data['name'], data['options'])
 
 @sio.event
